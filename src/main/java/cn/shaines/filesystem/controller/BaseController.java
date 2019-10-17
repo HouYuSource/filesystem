@@ -22,8 +22,4 @@ public class BaseController {
         return "redirect:/file/index";
     }
 
-    public String sign(){
-        return "";
-    }
-
 }

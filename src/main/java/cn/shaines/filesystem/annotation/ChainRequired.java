@@ -16,9 +16,6 @@ public @interface ChainRequired {
     // 代表是否需要检查
     Type value() default Type.CHECK;
 
-    // 预留扩展
-    String ip() default "defaultValue";
-
     enum Type {
         // 需要检查
         CHECK,

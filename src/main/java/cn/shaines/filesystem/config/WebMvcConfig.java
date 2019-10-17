@@ -18,7 +18,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Autowired
     private BaseInterceptor baseInterceptor;
-
     @Autowired
     private ChainInterceptor chainInterceptor;
 

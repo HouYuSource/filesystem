@@ -1,23 +1,21 @@
 package cn.shaines.filesystem.repository;
 
-import cn.shaines.filesystem.entity.Fileobject;
+import cn.shaines.filesystem.entity.File;
+import javax.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 
-import javax.transaction.Transactional;
-import java.util.List;
-
 /**
- * Fileobject存储库.
+ * File存储库.
  *
  * @author houyu
  * @createTime 2019/3/9 21:47
  */
-public interface FileobjectRepository extends JpaRepository<Fileobject, String> {
+public interface FileRepository extends JpaRepository<File, String> {
 
-    Fileobject findByName(String name);
+    File findByName(String name);
 
     @Modifying
     @Transactional
@@ -27,5 +25,5 @@ public interface FileobjectRepository extends JpaRepository<Fileobject, String> 
     @Transactional
     int deleteAllByNameIn(String[] names);
 
-    Page<Fileobject> findAllByNameIsContaining(String name, Pageable pageable);
+    Page<File> findAllByNameIsContaining(String name, Pageable pageable);
 }

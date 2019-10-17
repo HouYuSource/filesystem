@@ -1,7 +1,7 @@
 package cn.shaines.filesystem.controller;
 
-import cn.shaines.filesystem.entity.Visitobject;
-import cn.shaines.filesystem.service.VisitobjectService;
+import cn.shaines.filesystem.entity.Log;
+import cn.shaines.filesystem.service.LogService;
 import cn.shaines.filesystem.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/visit")
-public class VisitobjectController {
+public class LogController {
 
     // ----------------------------------------------------------- //
-    // 页面跳转
-    @RequestMapping("")
+    /** 页面跳转 */
+    @RequestMapping
     public String empty(){
         // 重定向到index
         return "redirect:/visit/index";
@@ -37,7 +37,7 @@ public class VisitobjectController {
     // ----------------------------------------------------------- //
 
     @Autowired
-    private VisitobjectService visitobjectService;
+    private LogService logService;
 
     /**
      * 分页查询文件
@@ -47,9 +47,10 @@ public class VisitobjectController {
     public Result page(@RequestParam(defaultValue = "0") int pageIndex, @RequestParam(defaultValue = "5") int pageSize, String name) {
         Sort sort = new Sort(Sort.Direction.DESC, "date");
         Pageable pageable = PageRequest.of(pageIndex, pageSize, sort);
-        Page<Visitobject> page = "".equalsIgnoreCase(name) ? page = visitobjectService.findAll(pageable) : visitobjectService.findAllByUriIsContainingOrParamsIsContaining(name, name, pageable);
+        Page<Log> page = "".equalsIgnoreCase(name) ?
+                logService.findAll(pageable) :
+                logService.findAllByUriIsContainingOrParamsIsContaining(name, name, pageable);
         return Result.success("请求成功", page);
     }
-
 
 }

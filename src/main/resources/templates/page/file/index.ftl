@@ -74,7 +74,7 @@
 <div class="container" style="opacity:0.75;">
 
     <div class="starter-template">
-        <h1 style="cursor:pointer;" onclick="javascrtpt:window.location.href='${ctx!''}/visit'">文件管理系统</h1><span style="color: #CCC;">power by houyu</span>
+        <h1 style="cursor:pointer;" onclick="javascrtpt:window.location.href='${ctx!''}/visit'">文件管理系统</h1><span style="color: #CCC;">powered by houyu [ shaines.cn ]</span>
         <div class="row">
             <h2>
                 文件列表
