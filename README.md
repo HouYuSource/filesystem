@@ -2,22 +2,11 @@
 
 整体效果，如下：
 #### 项目结构
-<a href="https://shaines.cn/comments/view?filename=https://img-blog.csdnimg.cn/20190313233907508.jpg" target="_blank">
-<img src="https://shaines.cn/comments/view?filename=https://img-blog.csdnimg.cn/20190313233907508.jpg" alt="查看大图" />
-</a>
+![在这里插入图片描述](https://shaines.cn/view/image?src=https://img-blog.csdnimg.cn/20190313233907508.jpg)
 
 #### 首页效果
-
-<a href="https://shaines.cn/comments/view?filename=https://img-blog.csdnimg.cn/20190313222119329.png" target="_blank">
-<img src="https://shaines.cn/comments/view?filename=https://img-blog.csdnimg.cn/20190313222119329.png" alt="查看大图" />
-</a>
-
-#### 日志查看
-
-<a href="https://shaines.cn/comments/view?filename=https://img-blog.csdnimg.cn/20190313222544156.jpg" target="_blank">
-<img src="https://shaines.cn/comments/view?filename=https://img-blog.csdnimg.cn/20190313222544156.jpg" alt="查看大图" />
-</a>
-
+![在这里插入图片描述](https://shaines.cn/view/image?src=https://img-blog.csdnimg.cn/20190313222119329.png)
+#### 日志查看![在这里插入图片描述](https://shaines.cn/view/image?src=https://img-blog.csdnimg.cn/20190313222544156.jpg)
 #### (1)解决了什么问题？
 
  - 简化其他项目的文件处理（上传 | 下载）问题，统一处理
@@ -27,10 +16,7 @@
 > 其中文件是存储在七牛云服务器上的，简要介绍一下，七牛云有10G的对象存储空间可以使用,永久的,支持http,不提供https流量,所以这也是我撘文件系统的原因之一，就是为了小程序的https....否则小程序无法访问图片
 
 #### 防盗链效果
-
-<a href="https://shaines.cn/comments/view?filename=https://img-blog.csdnimg.cn/20190313225348446.png" target="_blank">
-<img src="https://shaines.cn/comments/view?filename=https://img-blog.csdnimg.cn/20190313225348446.png" alt="查看大图" />
-</a>
+![在这里插入图片描述](https://shaines.cn/view/image?src=https://img-blog.csdnimg.cn/20190313225348446.png)
 but 对于爬虫来说无任何阻碍【捂脸】
 
 #### (2)用到的技术栈
@@ -67,19 +53,18 @@ but 对于爬虫来说无任何阻碍【捂脸】
 
 导入注意事项:
 
- 1. sql文件
+ 1. sql文件 
 
     修改 application.properties
     ```properties
     spring.jpa.hibernate.ddl-auto=create-drop # 自动创建表
     ```
-	
  2. 修改数据库
-	```properties
+    ```properties
     spring.datasource.url=jdbc:mysql://localhost/{database}?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
     ```
- 3. 七牛云配置
-
+ 
+ 4. 七牛云配置
     前往[七牛云官网](https://portal.qiniu.com)注册账号,并且获取绑定好域名,如果不绑定,七牛云提供一个月的免费域名,一个月后失效,建议绑定自己的,前往[对象存储](https://portal.qiniu.com/bucket)创建`Bucket`,并且获取`accessKey` `secretKey` `domainOfBucket`在util.QiniuUtil.java文件中修改对应的配置即可。
     ```java
 	private static final String accessKey = "your accessKey";
@@ -89,7 +74,7 @@ but 对于爬虫来说无任何阻碍【捂脸】
     private static final String domainOfBucket = "your domainOfBucket";
     ```
 
+
 ##### 交流
 博客同步到[SHY BLOG](https://www.shaines.cn)
 mail ：for.houyu@qq.com
-
