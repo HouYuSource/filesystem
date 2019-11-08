@@ -19,10 +19,6 @@ public interface FileRepository extends JpaRepository<File, String> {
 
     @Modifying
     @Transactional
-    int deleteAllByIdIn(String[] ids);
-
-    @Modifying
-    @Transactional
     int deleteAllByNameIn(String[] names);
 
     Page<File> findAllByNameIsContaining(String name, Pageable pageable);

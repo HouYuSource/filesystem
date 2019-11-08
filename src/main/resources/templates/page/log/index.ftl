@@ -23,7 +23,7 @@
         var ctx = '${ctx!''}';
     </script>
 
-    <script src="${ctx}/static/js/visit/index.js" type="text/javascript" charset="utf-8"></script>
+    <script src="${ctx}/static/js/log/index.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <style type="text/css">
     body {

@@ -2,11 +2,14 @@ package cn.shaines.filesystem.helper;
 
 import cn.shaines.filesystem.util.QiNiuUtil;
 import java.io.IOException;
+import org.springframework.stereotype.Component;
 
 /**
+ * 七牛云文件帮助类
  * @author houyu
  * @createTime 2019/10/17 20:50
  */
+@Component
 public class QiNiuFileHelper implements FileHelper {
 
     @Override

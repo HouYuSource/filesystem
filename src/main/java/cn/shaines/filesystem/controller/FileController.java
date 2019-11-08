@@ -2,10 +2,10 @@ package cn.shaines.filesystem.controller;
 
 import cn.shaines.filesystem.annotation.ChainRequired;
 import cn.shaines.filesystem.entity.File;
+import cn.shaines.filesystem.helper.FileHolder;
 import cn.shaines.filesystem.service.FileService;
 import cn.shaines.filesystem.util.IdWorker;
 import cn.shaines.filesystem.util.MvcUtil;
-import cn.shaines.filesystem.util.QiNiuUtil;
 import cn.shaines.filesystem.vo.Result;
 import com.qiniu.common.QiniuException;
 import com.qiniu.util.StringUtils;
@@ -39,7 +39,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author houyu
  * @createTime 2019/3/10 0:52
  */
-@CrossOrigin(origins = "*", maxAge = 3600) 				// 允许所有域名访问
+@CrossOrigin(origins = "*", maxAge = 3600)                // 允许所有域名访问
 @Controller
 @RequestMapping("/file")
 public class FileController {
@@ -51,20 +51,22 @@ public class FileController {
     private IdWorker idWorker;
     @Autowired
     private FileService fileService;
-
+    @Autowired
+    private FileHolder fileHolder;
     // ------------------------------------------------------------------------------------- //
+
     /**
      * 页面跳转
      */
     @RequestMapping
-    public String empty(){
+    public String empty() {
         return "redirect:/file/index";
     }
+
     @RequestMapping("/index")
-    public String index(){
+    public String index() {
         return "/file/index";
     }
-
     // ------------------------------------------------------------------------------------- //
 
     /**
@@ -87,8 +89,8 @@ public class FileController {
     @ChainRequired
     public void view(@PathVariable String name, HttpServletResponse response) throws IOException {
         File file = fileService.findByName(name);
-        if (file != null){
-            byte[] bytes = QiNiuUtil.findByKey(file.getName());
+        if(file != null) {
+            byte[] bytes = fileHolder.findByKey(file.getName());
             MvcUtil.viewData(response, bytes, file.getName());
         }
     }
@@ -100,8 +102,8 @@ public class FileController {
     @ResponseBody
     public void download(@PathVariable String name, HttpServletResponse response) throws IOException {
         File file = fileService.findByName(name);
-        if (file != null ){
-            byte[] bytes = QiNiuUtil.findByKey(file.getName());
+        if(file != null) {
+            byte[] bytes = fileHolder.findByKey(file.getName());
             MvcUtil.downloadData(response, bytes, file.getName());
         }
     }
@@ -113,10 +115,10 @@ public class FileController {
     @ResponseBody
     public Result delete(@PathVariable String name) throws QiniuException {
         File file = fileService.findByName(name);
-        if (file == null){
+        if(file == null) {
             return Result.error("文件不存在", null);
         }
-        QiNiuUtil.delete(name);
+        fileHolder.deleteAllByKeys(new String[]{ name });
         fileService.deleteById(file.getId());
         return Result.SUCCESS;
     }
@@ -128,13 +130,10 @@ public class FileController {
     @ResponseBody
     @RequestMapping(value = "/delete", method = RequestMethod.POST, consumes = "application/json")
     public Result delete(@RequestBody Map<String, Object> paramMap) throws QiniuException {
-
-        List<String> nameList = (List<String>)paramMap.get("names");
+        List<String> nameList = (List<String>) paramMap.get("names");
         String[] nameArray = nameList.toArray(new String[nameList.size()]);
-
         fileService.deleteAllByNameIn(nameArray);
-        QiNiuUtil.delete(nameArray);
-
+        fileHolder.deleteAllByKeys(nameArray);
         return Result.SUCCESS;
     }
 
@@ -147,26 +146,19 @@ public class FileController {
     public Result upload(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request) throws IOException {
         // 获取文件名
         String filename = multipartFile.getOriginalFilename();
-        if (fileService.findByName(filename) != null){
+        if(fileService.findByName(filename) != null) {
             return Result.error("文件名重复，请更名再上传", null);
         }
-
         byte[] bytes = multipartFile.getBytes();
-        QiNiuUtil.upload(filename, bytes);
-
+        fileHolder.save(filename, bytes);
         File file = new File();
         file.setId(idWorker.nextId() + "");
         file.setName(filename);
         file.setType(multipartFile.getContentType());
         file.setSize(bytes.length);
         file.setDate(new Date());
-
-        String mapping = StringUtils.join(new String[] { hostname,
-                ("".equals(request.getContextPath()) ? "" : "/" + request.getContextPath()),
-                "/file/view/",
-                file.getName() }, "");
+        String mapping = StringUtils.join(new String[] {hostname, ("".equals(request.getContextPath()) ? "" : "/" + request.getContextPath()), "/file/view/", file.getName()}, "");
         file.setMapping(mapping);
-
         fileService.save(file);
         Map<String, String> dataMap = new HashMap<>(2);
         dataMap.put("url", mapping);

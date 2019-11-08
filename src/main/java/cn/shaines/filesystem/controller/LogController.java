@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @createTime 2019/3/11 16:18
  */
 @Controller
-@RequestMapping("/visit")
+@RequestMapping("/log")
 public class LogController {
 
     // ----------------------------------------------------------- //
@@ -27,12 +27,12 @@ public class LogController {
     @RequestMapping
     public String empty(){
         // 重定向到index
-        return "redirect:/visit/index";
+        return "redirect:/log/index";
     }
 
     @RequestMapping("/index")
     public String index(){
-        return "/visit/index";
+        return "/log/index";
     }
     // ----------------------------------------------------------- //
 
