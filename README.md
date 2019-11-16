@@ -1,6 +1,8 @@
 > 前几天搞了一个文件管理系统，因为几乎做每一个项目都涉及到上传文件这一步骤，不可能每一个项目都做一个模块处理文件，所以我最近整了一个小文件系统来用，这样子别的项目上传文件的话，直接可以上传到该项目即可。。。
 > 详情请浏览博客 https://blog.csdn.net/JinglongSource/article/details/88544115
 
+> 目前支持多端文件上传, 默认使用本地磁盘存储
+
 
 整体效果，如下：
 #### 项目结构
@@ -65,6 +67,16 @@ but 对于爬虫来说无任何阻碍【捂脸】
     ```properties
     spring.datasource.url=jdbc:mysql://localhost/{database}?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
     ```
+
+
+ 3. 本地存储的路径
+    ```properties
+    # 设置文件处理这, 支持多个, 使用英文逗号分隔。如 DiskFileHelper,QiNiuFileHelper
+	handle.file.helper=DiskFileHelper
+	# 本地存储的路径
+	disk.file.path=C:/Users/houyu/Desktop/temp
+    ```
+
  
  4. 七牛云配置
     前往[七牛云官网](https://portal.qiniu.com)注册账号,并且获取绑定好域名,如果不绑定,七牛云提供一个月的免费域名,一个月后失效,建议绑定自己的,前往[对象存储](https://portal.qiniu.com/bucket)创建`Bucket`,并且获取`accessKey` `secretKey` `domainOfBucket`在util.QiniuUtil.java文件中修改对应的配置即可。
