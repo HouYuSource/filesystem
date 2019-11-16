@@ -69,7 +69,7 @@ but 对于爬虫来说无任何阻碍【捂脸】
     ```
 
 
- 3. 本地存储的路径
+ 3. 修改 application.properties本地存储的路径
     ```properties
     # 设置文件处理这, 支持多个, 使用英文逗号分隔。如 DiskFileHelper,QiNiuFileHelper
 	handle.file.helper=DiskFileHelper
