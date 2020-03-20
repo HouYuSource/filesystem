@@ -5,12 +5,13 @@
 
 
 整体效果，如下：
+
 #### 项目结构
-![在这里插入图片描述](https://shaines.cn/view/image?src=https://img-blog.csdnimg.cn/20190313233907508.jpg)
+![在这里插入图片描述](https://shaines.cn/view/image?src=https://img-blog.csdnimg.cn/20190313233907508.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0ppbmdsb25nU291cmNl,size_16,color_FFFFFF,t_70)
 
 #### 首页效果
-![在这里插入图片描述](https://shaines.cn/view/image?src=https://img-blog.csdnimg.cn/20190313222119329.png)
-#### 日志查看![在这里插入图片描述](https://shaines.cn/view/image?src=https://img-blog.csdnimg.cn/20190313222544156.jpg)
+![在这里插入图片描述](https://shaines.cn/view/image?src=https://img-blog.csdnimg.cn/20190313222119329.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0ppbmdsb25nU291cmNl,size_16,color_FFFFFF,t_70)
+#### 日志查看![在这里插入图片描述](https://shaines.cn/view/image?src=https://img-blog.csdnimg.cn/20190313222544156.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0ppbmdsb25nU291cmNl,size_16,color_FFFFFF,t_70)
 #### (1)解决了什么问题？
 
  - 简化其他项目的文件处理（上传 | 下载）问题，统一处理
@@ -20,7 +21,7 @@
 > 其中文件是存储在七牛云服务器上的，简要介绍一下，七牛云有10G的对象存储空间可以使用,永久的,支持http,不提供https流量,所以这也是我撘文件系统的原因之一，就是为了小程序的https....否则小程序无法访问图片
 
 #### 防盗链效果
-![在这里插入图片描述](https://shaines.cn/view/image?src=https://img-blog.csdnimg.cn/20190313225348446.png)
+![在这里插入图片描述](https://shaines.cn/view/image?src=https://img-blog.csdnimg.cn/20190313225348446.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0ppbmdsb25nU291cmNl,size_16,color_FFFFFF,t_70)
 but 对于爬虫来说无任何阻碍【捂脸】
 
 #### (2)用到的技术栈
